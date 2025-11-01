@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Food Share</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-light {
+            background-color: white;
+        }
+        
+        .section-dark {
+            background-color: #f1f3f5;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2a2a2a;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 60px 0;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 10%;
+            right: 10%;
+            height: 5px;
+            background: #4CAF50;
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .step-icon {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 5px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-icon {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-icon i {
+            font-size: 4rem;
+            color: #4CAF50;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2a2a2a;
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .process-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+        
+        .process-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .process-image:hover {
+            transform: translateY(-10px);
+        }
+        
+        .process-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .process-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+        }
+        
+        .process-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list i {
+            color: #4CAF50;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .user-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .user-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .user-header {
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+        }
+        
+        .user-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .user-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .user-body {
+            padding: 30px;
+        }
+        
+        .user-body ul {
+            list-style: none;
+        }
+        
+        .user-body li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .user-body li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .benefits-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .benefit-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #a5d6a7;
+        }
+        
+        .benefit-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .btn-outline:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        footer {
+            background: #2a2a2a;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .process-steps {
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .process-detail, .user-types, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .step-icon {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .step-icon i {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Animation for steps */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .step, .process-detail, .user-card, .benefit-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.3s; }
+        .step:nth-child(3) { animation-delay: 0.5s; }
+        .process-detail:nth-child(1) { animation-delay: 0.2s; }
+        .process-detail:nth-child(2) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>How Food Share Works</h1>
+            <p>Our simple three-step process connects surplus food with people in need, creating a sustainable solution to hunger and food waste.</p>
+            <a href="#process" class="btn">See the Process</a>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section id="process" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple Three-Step Process</h2>
+                <p>From food donation to community distribution, we make it easy to make a difference</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-utensils"></i>
+                        <!-- <div class="step-number">1</div> -->
+                    </div>
+                    <h3>List Surplus Food</h3>
+                    <p>Restaurants and food businesses list available surplus food on our platform with details and pickup time.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-bell"></i>
+                        <!-- <div class="step-number">2</div> -->
+                    </div>
+                    <h3>Smart Matching</h3>
+                    <p>Our system instantly notifies nearby NGOs about available donations based on their capacity and needs.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-truck"></i>
+                        <!-- <div class="step-number">3</div> -->
+                    </div>
+                    <h3>Delivery & Distribution</h3>
+                    <p>NGOs collect the food and distribute it to communities in need through their established networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 1 Details -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="process-detail">
+                <!-- <div class="process-image">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Food preparation">
+                </div> -->
+                <div class="process-text">
+                    <h3>Step 1: Easy Food Listing</h3>
+                    <p>Food providers can quickly list surplus food through our user-friendly platform or mobile app. The process takes less than 2 minutes.</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Specify food type, quantity, and preparation time</li>
+                        <li><i class="fas fa-check-circle"></i> Set preferred pickup windows</li>
+                        <li><i class="fas fa-check-circle"></i> Upload photos for transparency</li>
+                        <li><i class="fas fa-check-circle"></i> Get instant confirmation of listing</li>
+                    </ul>
+                    
+                    <p>Our system automatically categorizes food items and ensures they meet safety standards before being shared with partner NGOs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2 Details -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="process-detail">
+                <div class="process-text">
+                    <h3>Step 2: Intelligent Matching</h3>
+                    <p>Our smart algorithm matches food donations with the most suitable NGOs based on multiple factors to ensure efficient distribution.</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Location-based matching for quick pickup</li>
+                        <li><i class="fas fa-check-circle"></i> Capacity matching based on NGO size</li>
+                        <li><i class="fas fa-check-circle"></i> Preference matching for specific food types</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time notifications via app and SMS</li>
+                    </ul>
+                    
+                    <p>NGOs receive instant alerts about new donations and can claim them with a single click, ensuring minimal response time.</p>
+                </div>
+                <!-- <div class="process-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Food matching">
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3 Details -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="process-detail">
+                <div class="process-image">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Food distribution">
+                </div>
+                <div class="process-text">
+                    <h3>Step 3: Efficient Distribution</h3>
+                    <p>Once an NGO claims a donation, they coordinate pickup and distribute the food to communities through their established networks.</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Scheduled pickup to minimize disruption</li>
+                        <li><i class="fas fa-check-circle"></i> Temperature-controlled transport when needed</li>
+                        <li><i class="fas fa-check-circle"></i> Distribution tracking and reporting</li>
+                        <li><i class="fas fa-check-circle"></i> Impact feedback to donors</li>
+                    </ul>
+                    
+                    <p>Donors receive reports showing how their contribution made a difference, creating a transparent and rewarding experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Types -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Designed for Everyone</h2>
+                <p>Whether you're a food business or an NGO, our platform works for you</p>
+            </div>
+            
+            <div class="user-types">
+                <div class="user-card">
+                    <div class="user-header">
+                        <!-- <i class="fas fa-store"></i> -->
+                        <h3>For Food Donors</h3>
+                        <p>Restaurants, Cafes, Caterers</p>
+                    </div>
+                    <div class="user-body">
+                        <ul>
+                            <li>Reduce food waste and disposal costs</li>
+                            <li>Receive tax benefits for donations</li>
+                            <li>Enhance your brand's social responsibility</li>
+                            <li>Simple listing process takes under 2 minutes</li>
+                            <li>Choose pickup times that work for you</li>
+                            <li>Get impact reports on your donations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-header">
+                        <!-- <i class="fas fa-hands-helping"></i> -->
+                        <h3>For NGOs</h3>
+                        <p>Charities, Shelters, Community Centers</p>
+                    </div>
+                    <div class="user-body">
+                        <ul>
+                            <li>Access quality food donations for free</li>
+                            <li>Receive real-time alerts for new donations</li>
+                            <li>Save on food procurement costs</li>
+                            <li>Serve more people with diverse food options</li>
+                            <li>Coordinate pickups with your schedule</li>
+                            <li>Track and report your impact easily</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Benefits of Joining Food Share</h2>
+                <p>Creating positive impact across multiple dimensions</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Social Impact</h4>
+                    <p>Provide nutritious meals to vulnerable communities and reduce food insecurity in your area.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Environmental</h4>
+                    <p>Significantly reduce food waste and its environmental impact, lowering greenhouse gas emissions.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Economic</h4>
+                    <p>Save on waste disposal costs as a donor and reduce food procurement expenses as an NGO.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join hundreds of food businesses and NGOs already using Food Share to reduce waste and fight hunger.</p>
+            <a href="d.html" class="btn">Become a Donor</a>
+            <a href="r.html" class="btn btn-outline">Join as NGO</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Food Share</div>
+            <p>Connecting surplus food with those in need</p>
+            <div class="footer-links">
+                <a href="Home.html">Home</a>
+                <a href="#">How It Works</a>
+                <a href="d.html">For Donors</a>
+                <a href="r.html">For NGOs</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Food Share. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.step, .process-detail, .user-card, .benefit-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+            
+            // Add hover effect to process steps
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => {
+                step.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                step.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #27ae60;
+            --primary-dark: #219653;
+            --secondary: #EB5757;
+            --accent: #F2C94C;
+            --dark: #2a2a2a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .login-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .toggle-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .login-side {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donor-side {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(39, 174, 96, 0.8));
+            color: white;
+        }
+
+        .receiver-side {
+            background: linear-gradient(135deg, rgba(235, 87, 87, 0.9), rgba(235, 87, 87, 0.8));
+            color: white;
+        }
+
+        .side-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 50%);
+        }
+
+        .side-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .side-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+        }
+
+        .side-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .side-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .features-list i {
+            margin-right: 10px;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+
+        .login-form-container {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .form-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+            outline: none;
+        }
+
+        .receiver-form .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(235, 87, 87, 0.2);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .receiver-form .forgot-password {
+            color: var(--secondary);
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .receiver-form .btn-login {
+            background: var(--secondary);
+            box-shadow: 0 5px 15px rgba(235, 87, 87, 0.3);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .receiver-form .btn-login:hover {
+            box-shadow: 0 8px 20px rgba(235, 87, 87, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--gray);
+        }
+
+        .signup-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .receiver-form .signup-link a {
+            color: var(--secondary);
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .google-btn {
+            color: #DB4437;
+        }
+
+        .facebook-btn {
+            color: #4267B2;
+        }
+
+        /* Animation for form switching */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-form-container {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-side {
+                padding: 40px 30px;
+            }
+            
+            .login-form-container {
+                padding: 40px 30px;
+            }
+            
+            .side-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+      
+        <!-- Donor Login Side -->
+    
+
+        <!-- Receiver Login Side -->
+        <div class="login-side receiver-side" id="receiverSide" style="display: none;">
+            <div class="side-pattern"></div>
+            <div class="side-content">
+                <div class="side-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h2>NGO Receiver Login</h2>
+                <p>Access quality food donations for your community programs</p>
+                
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Real-time donation alerts</li>
+                    <li><i class="fas fa-check-circle"></i> Easy pickup scheduling</li>
+                    <li><i class="fas fa-check-circle"></i> Impact tracking and reporting</li>
+                    <li><i class="fas fa-check-circle"></i> Network with food donors</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Donor Login Form -->
+        <div class="login-form-container" id="donorForm">
+            <div class="form-header">
+                <h2>Welcome Back, Donor</h2>
+                <p>Sign in to your account to continue sharing food</p>
+            </div>
+            
+            <form class="login-form donor-form">
+                <div class="form-group">
+                    <label for="donor-email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="donor-email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="donor-password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="donor-password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="donor-remember">
+                        <label for="donor-remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login as Donor
+                </button>
+                
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google-btn">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="social-btn facebook-btn">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#">Sign up as Donor</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Receiver Login Form -->
+        <div class="login-form-container" id="receiverForm" style="display: none;">
+            <div class="form-header">
+                <h2>Welcome Back, NGO</h2>
+                <p>Sign in to access food donations for your community</p>
+            </div>
+            
+            <form class="login-form receiver-form">
+                <div class="form-group">
+                    <label for="receiver-email">Organization Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="receiver-email" class="form-control" placeholder="Enter your organization email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiver-password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="receiver-password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiver-org">Organization ID</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="receiver-org" class="form-control" placeholder="Enter your organization ID" required>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="receiver-remember">
+                        <label for="receiver-remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login as NGO
+                </button>
+                
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google-btn">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="social-btn facebook-btn">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                </div>
+                
+                <div class="signup-link">
+                    Not registered yet? <a href="#">Register your NGO</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const donorSide = document.getElementById('donorSide');
+            const receiverSide = document.getElementById('receiverSide');
+            const donorForm = document.getElementById('donorForm');
+            const receiverForm = document.getElementById('receiverForm');
+            
+            let isDonorLogin = true;
+            
+            toggleBtn.addEventListener('click', function() {
+                if (isDonorLogin) {
+                    // Switch to NGO login
+                    donorSide.style.display = 'none';
+                    receiverSide.style.display = 'flex';
+                    donorForm.style.display = 'none';
+                    receiverForm.style.display = 'flex';
+                    toggleBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> Switch to Donor Login';
+                    isDonorLogin = false;
+                } else {
+                    // Switch to Donor login
+                    donorSide.style.display = 'flex';
+                    receiverSide.style.display = 'none';
+                    donorForm.style.display = 'flex';
+                    receiverForm.style.display = 'none';
+                    toggleBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> Switch to NGO Login';
+                    isDonorLogin = true;
+                }
+            });
+            
+            // Add form validation and animation
+            const forms = document.querySelectorAll('.login-form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('.btn-login');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate login process
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Login Successful!';
+                        submitBtn.style.background = isDonorLogin ? '#27ae60' : '#EB5757';
+                        
+                        // Reset after a moment
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            submitBtn.style.background = isDonorLogin ? 'var(--primary)' : 'var(--secondary)';
+                            
+                            // In a real app, you would redirect here
+                            // window.location.href = isDonorLogin ? 'donor-dashboard.html' : 'receiver-dashboard.html';
+                        }, 1500);
+                    }, 2000);
+                });
+            });
+            
+            // Add input focus effects
+            const inputs = document.querySelectorAll('.form-control');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.parentElement.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

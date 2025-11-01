@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Food Share</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1553901753-215db344677a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-light {
+            background-color: white;
+        }
+        
+        .section-dark {
+            background-color: #f1f3f5;
+        }
+        
+        .section-image {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2a2a2a;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .content-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+        }
+        
+        .content-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .content-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .mission-box, .vision-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-box h3 i, .vision-box h3 i {
+            margin-right: 15px;
+            color: #4CAF50;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .quote-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+        }
+        
+        .quote {
+            font-size: 2rem;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.4;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn:hover {
+            background: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .team-section {
+            padding: 80px 0;
+            background: #f1f3f5;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member:hover .team-img img {
+            transform: scale(1.1);
+        }
+        
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .team-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: #2a2a2a;
+        }
+        
+        .team-info p {
+            color: #4CAF50;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #2a2a2a;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .content-grid, .mission-vision, .stats, .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid, .mission-vision, .stats, .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .quote {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>About Food Share</h1>
+            <p>Connecting surplus food with those in need through technology and compassion</p>
+            <a href="#our-story" class="btn">Our Story</a>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Story</h2>
+                <p>How Food Share began and the journey so far</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3>Bridging the Gap Between Surplus and Need</h3>
+                    <p>Food Share was founded in 2025 when our founders witnessed the heartbreaking paradox of food waste amidst hunger. While working at local restaurants, they saw perfectly good food being discarded daily, while shelters and community kitchens struggled to feed those in need.</p>
+                    <p>This realization sparked the creation of Food Share - a platform designed to efficiently connect food donors with organizations that serve vulnerable communities. What started as a small local initiative has now grown into a nationwide movement.</p>
+                    <p>Today, we partner with hundreds of restaurants, cafes, hotels, and event venues across the country, helping them redirect surplus food to where it's needed most, while reducing their environmental footprint.</p>
+                </div>
+                <div class="content-image">
+                    <img src="f5.jpeg" alt="Food donation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>We aim to build a hunger-free society by using technology to create a smart and efficient food sharing network. Our platform enables restaurants, cafes, and event organizers to easily donate surplus food, while nearby NGOs are instantly notified to collect and distribute it safely to those in need.</p>
+                    <p>We're committed to reducing food waste while addressing food insecurity, creating a sustainable solution that benefits both our environment and our communities.</p>
+                </div>
+                <div class="vision-box">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>We envision a world where no food is wasted, and no one goes to bed hungry. By connecting communities through compassion and technology, we hope to inspire people to share more and waste less.</p>
+                    <p>Our long-term goal is to expand our network globally, creating a world where surplus food is automatically redirected to those who need it, eliminating both hunger and food waste in our lifetime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Impact</h2>
+                <p>The difference we've made together with our partners</p>
+            </div>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Meals Shared</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Partner NGOs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Food Donors</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Cities Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Food Share Works</h2>
+                <p>Our simple three-step process to reduce food waste and fight hunger</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-image">
+                    <img src="t1.jpeg" alt="Food preparation">
+                </div>
+                <div class="content-text">
+                    <h3>Streamlining Food Redistribution</h3>
+                    <p><strong>1. Donation Listing:</strong> Food providers use our simple platform to list surplus food available for donation, specifying type, quantity, and pickup time.</p>
+                    <p><strong>2. Smart Matching:</strong> Our algorithm instantly notifies nearby partner NGOs about available donations, matching them based on capacity, location, and needs.</p>
+                    <p><strong>3. Efficient Distribution:</strong> NGOs collect the food and distribute it to communities in need through their established networks, with full transparency and tracking.</p>
+                    <p>Our technology ensures that food moves quickly from donor to recipient, maintaining quality and safety while maximizing impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote">
+                "Giving is not about making a donation. It's about making a difference."
+            </div>
+            <div class="quote-author">- Philosophy</div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Team</h2>
+                <p>The passionate people behind Food Share</p>
+            </div>
+             <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="" alt="Team member">
+                    </div>
+                    <div class="team-info">
+                        <h4>Vishal Kumar</h4>
+                        <p>Developer & Tester</p>
+                      
+                    </div> 
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="" alt="Team member">
+                    </div>
+                    <div class="team-info">
+                        <h4>Shashwat Singh</h4>
+                        <p>Developer & Tester</p>
+                    </div>
+                </div>
+                <!-- <div class="team-member"> -->
+                    <!-- <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team member">
+                    </div>
+                    <!-- <div class="team-info">
+                        <h4>David Rodriguez</h4>
+                        <p>CTO</p>
+                        <p>Tech innovator focused on social impact solutions</p>
+                    </div> -->
+            
+        <!-- </div> -->
+    </section> -->
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join Us in Ending Hunger</h2>
+            <p>Whether you're a food business with surplus to share or an NGO helping communities, join our network and be part of the solution.</p>
+            <a href="#" class="btn">Partner With Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Food Share</div>
+            <p>Connecting surplus food with those in need</p>
+            <div class="footer-links">
+                <a href="h.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="d.html">For Donors</a>
+                <a href="r.html">For NGOs</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Food Share. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for stats counting
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current).toLocaleString() + 
+                                      (stat.textContent.includes('M') ? 'M+' : 
+                                       stat.textContent.includes('K') ? 'K+' : '+');
+                }, 30);
+            });
+        });
+    </script>
+</body>
+</html>
